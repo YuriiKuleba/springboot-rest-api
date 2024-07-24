@@ -1,34 +1,16 @@
 spring:
   datasource:
-    - name: data-base-1
+    - name: db1
       url: jdbc:mysql://localhost:3306/my_db?useSSL=false&serverTimezone=UTC
       username: yurko
       password: yurko
-      table: employees
-      mapping:
-        id: user_id_db1
-        username: yurko_db1
-        name: first_name_db1
-        surname: last_name_db1
-      jpa:
+      properties:
         hibernate:
-          ddl-auto: <create | create-drop | update | validate | none>
-        properties:
-          hibernate:
-            dialect: org.hibernate.dialect.MySQL8Dialect
-    - name: data-base-2
+          dialect: org.hibernate.dialect.MySQL8Dialect
+    - name: db2
       url: jdbc:postgresql://localhost:5432/myDb
       username: postgres
       password: yurko
-      table: employees
-      mapping:
-        id: user_id_db2
-        username: yurko_db2
-        name: first_name_db2
-        surname: last_name_db2
-      jpa:
+      properties:
         hibernate:
-          ddl-auto: <create | create-drop | update | validate | none>
-        properties:
-          hibernate:
-            dialect: org.hibernate.dialect.PostgreSQLDialect
+          dialect: org.hibernate.dialect.PostgreSQLDialect

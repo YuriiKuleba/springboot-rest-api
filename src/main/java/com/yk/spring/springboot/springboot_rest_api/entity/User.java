@@ -1,26 +1,36 @@
 package com.yk.spring.springboot.springboot_rest_api.entity;
 
-public class Person {
-    private String id;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
 
-    public Person() {
+    public User() {
     }
 
-    public Person(String id, String username, String name, String surname) {
-        this.id = id;
+    public User(String username, String name, String surname) {
         this.username = username;
         this.name = name;
         this.surname = surname;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,5 +56,14 @@ public class Person {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id +
+            ", username='" + username + '\'' +
+            ", name='" + name + '\'' +
+            ", surname='" + surname + '\'' +
+            '}';
     }
 }
