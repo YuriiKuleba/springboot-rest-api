@@ -1,0 +1,80 @@
+package com.yk.spring.springboot.springboot_rest_api.model;
+
+import org.springframework.beans.factory.BeanClassLoaderAware;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "spring.datasource")
+public class DataSourceProperties implements BeanClassLoaderAware, InitializingBean {
+    public String url;
+    public String username;
+    public String password;
+    public String driverClassName;
+    public String sqlDialect;
+
+    public DataSourceProperties(String url, String username, String password, String driverClassName, String sqlDialect) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
+        this.driverClassName = driverClassName;
+        this.sqlDialect = sqlDialect;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getSqlDialect() {
+        return sqlDialect;
+    }
+
+    public void setSqlDialect(String sqlDialect) {
+        this.sqlDialect = sqlDialect;
+    }
+
+    @Override
+    public void setBeanClassLoader(ClassLoader classLoader) {
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+    }
+
+    @Override
+    public String toString() {
+        return "DataSourceProperties{" + "url='" + url + '\'' +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", driverClassName='" + driverClassName + '\'' +
+            ", sqlDialect='" + sqlDialect + '\'' +
+            '}';
+    }
+}
