@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    - name: data-base-1
+      url: jdbc:mysql://localhost:3306/my_db?useSSL=false&serverTimezone=UTC
+      username: yurko
+      password: yurko
+      jpa:
+        hibernate:
+          ddl-auto: <create | create-drop | update | validate | none>
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.MySQL8Dialect
+    - name: data-base-2
+      url: jdbc:postgresql://localhost:5432/myDb
+      username: postgres
+      password: yurko
+      jpa:
+        hibernate:
+          ddl-auto: <create | create-drop | update | validate | none>
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
