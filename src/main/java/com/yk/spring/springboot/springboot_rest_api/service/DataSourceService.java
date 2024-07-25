@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+@Service
 public class DataSourceService {
 
     private static final String DATA_SOURCE_FILE = "datasourceConfig.yaml";
