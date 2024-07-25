@@ -4,21 +4,12 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "spring.datasource")
-public class DataSourceProperties implements BeanClassLoaderAware, InitializingBean {
+//@ConfigurationProperties(prefix = "spring.datasource")
+public class DataSourceProperties{
     public String url;
     public String username;
     public String password;
     public String driverClassName;
-    public String sqlDialect;
-
-    public DataSourceProperties(String url, String username, String password, String driverClassName, String sqlDialect) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-        this.driverClassName = driverClassName;
-        this.sqlDialect = sqlDialect;
-    }
 
     public String getUrl() {
         return url;
@@ -52,29 +43,12 @@ public class DataSourceProperties implements BeanClassLoaderAware, InitializingB
         this.driverClassName = driverClassName;
     }
 
-    public String getSqlDialect() {
-        return sqlDialect;
-    }
-
-    public void setSqlDialect(String sqlDialect) {
-        this.sqlDialect = sqlDialect;
-    }
-
-    @Override
-    public void setBeanClassLoader(ClassLoader classLoader) {
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-    }
-
     @Override
     public String toString() {
         return "DataSourceProperties{" + "url='" + url + '\'' +
             ", username='" + username + '\'' +
             ", password='" + password + '\'' +
             ", driverClassName='" + driverClassName + '\'' +
-            ", sqlDialect='" + sqlDialect + '\'' +
             '}';
     }
 }
