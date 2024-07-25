@@ -7,7 +7,7 @@
 #      driver-class-name: org.postgresql.Driver
 #      properties:
 #        hibernate:
-#          dialect: org.hibernate.dialect.MySQL8Dialect
+#          dialect: org.hibernate.dialect.MySQLDialect
 #    db2:
 #      url: jdbc:postgresql://localhost:5432/data_base_2
 #      username: postgres
@@ -16,6 +16,7 @@
 #      properties:
 #        hibernate:
 #          dialect: org.hibernate.dialect.PostgreSQLDialect
+#  jpa: open-in-view=false
 #
 #springdoc-swagger-ui: path=/swagger-ui.html
 #springdoc:

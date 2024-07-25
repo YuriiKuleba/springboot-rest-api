@@ -5,7 +5,6 @@ import com.yk.spring.springboot.springboot_rest_api.exception_hendling.NoSuchUse
 import com.yk.spring.springboot.springboot_rest_api.exception_hendling.UserIncorrectData;
 import com.yk.spring.springboot.springboot_rest_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
