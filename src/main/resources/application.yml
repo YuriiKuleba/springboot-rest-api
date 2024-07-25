@@ -1,22 +1,22 @@
-spring:
-  datasource:
-    db1:
-      url: jdbc:mysql://localhost:3306/data_base_1?useSSL=false&serverTimezone=UTC
-      username: yurko
-      password: yurko
-      driver-class-name: org.postgresql.Driver
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.MySQL8Dialect
-    db2:
-      url: jdbc:postgresql://localhost:5432/data_base_2
-      username: postgres
-      password: yurko
-      driver-class-name: com.mysql.cj.jdbc.Driver.
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-
-springdoc-swagger-ui: path=/swagger-ui.html
-springdoc:
-  api-docs: path=/api-docs
+#spring:
+#  datasource:
+#    db1:
+#      url: jdbc:mysql://localhost:3306/data_base_1?useSSL=false&serverTimezone=UTC
+#      username: yurko
+#      password: yurko
+#      driver-class-name: org.postgresql.Driver
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.MySQL8Dialect
+#    db2:
+#      url: jdbc:postgresql://localhost:5432/data_base_2
+#      username: postgres
+#      password: yurko
+#      driver-class-name: com.mysql.cj.jdbc.Driver.
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.PostgreSQLDialect
+#
+#springdoc-swagger-ui: path=/swagger-ui.html
+#springdoc:
+#  api-docs: path=/api-docs
