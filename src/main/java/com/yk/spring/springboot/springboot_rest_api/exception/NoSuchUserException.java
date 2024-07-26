@@ -1,4 +1,4 @@
-package com.yk.spring.springboot.springboot_rest_api.exception_hendling;
+package com.yk.spring.springboot.springboot_rest_api.exception;
 
 public class NoSuchUserException extends RuntimeException {
 

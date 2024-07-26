@@ -10,10 +10,6 @@ public class SpringbootRestApplication {
 
 	public static void main(String[] args) {
 
-		DataSourceConfig dataSourceConfig = new DataSourceConfig();
-
-		dataSourceConfig.dataSource();
-
 		SpringApplication.run(SpringbootRestApplication.class, args);
 	}
 }

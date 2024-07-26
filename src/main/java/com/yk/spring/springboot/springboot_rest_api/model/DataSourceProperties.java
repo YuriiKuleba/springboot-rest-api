@@ -2,7 +2,7 @@ package com.yk.spring.springboot.springboot_rest_api.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "dataSource")
+@ConfigurationProperties(prefix = "data-source")
 public class DataSourceProperties{
     public String url;
     public String username;

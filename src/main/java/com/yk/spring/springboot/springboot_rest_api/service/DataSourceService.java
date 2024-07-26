@@ -12,13 +12,14 @@ import java.util.List;
 @Service
 public class DataSourceService {
 
-    private static final String DATA_SOURCE_FILE = "datasourceConfig.yaml";
+    private static final String DATA_SOURCE_FILE = "application.yaml";
 
     public List<DataSourceProperties> readMyObjects() {
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
         DataSourceList dataSourceList;
+
         try {
             dataSourceList = objectMapper
                 .readValue(getClass().getResourceAsStream("/" + DATA_SOURCE_FILE),

@@ -1,8 +1,8 @@
 package com.yk.spring.springboot.springboot_rest_api.controller;
 
 import com.yk.spring.springboot.springboot_rest_api.entity.User;
-import com.yk.spring.springboot.springboot_rest_api.exception_hendling.NoSuchUserException;
-import com.yk.spring.springboot.springboot_rest_api.exception_hendling.UserIncorrectData;
+import com.yk.spring.springboot.springboot_rest_api.exception.NoSuchUserException;
+import com.yk.spring.springboot.springboot_rest_api.exception.UserIncorrectData;
 import com.yk.spring.springboot.springboot_rest_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
