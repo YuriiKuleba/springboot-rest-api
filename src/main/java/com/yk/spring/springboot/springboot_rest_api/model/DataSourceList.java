@@ -13,4 +13,5 @@ public class DataSourceList {
     public void setDataSource(List<DataSourceProperties> dataSource) {
         this.dataSource = dataSource;
     }
+
 }

@@ -2,7 +2,7 @@ package com.yk.spring.springboot.springboot_rest_api.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "data-source")
+//@ConfigurationProperties(prefix = "dataSource")
 public class DataSourceProperties{
     public String url;
     public String username;
@@ -11,6 +11,16 @@ public class DataSourceProperties{
 
     public String getUrl() {
         return url;
+    }
+
+    public DataSourceProperties() {
+    }
+
+    public DataSourceProperties(String url, String username, String password, String driverClassName) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
+        this.driverClassName = driverClassName;
     }
 
     public void setUrl(String url) {

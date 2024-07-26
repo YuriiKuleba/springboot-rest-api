@@ -1,10 +1,8 @@
 package com.yk.spring.springboot.springboot_rest_api.service;
 
-import com.yk.spring.springboot.springboot_rest_api.ApplicationContextProvider;
-import com.yk.spring.springboot.springboot_rest_api.configuration.DataSourceConfig;
-import com.yk.spring.springboot.springboot_rest_api.dao.UserDAO;
+import com.yk.spring.springboot.springboot_rest_api.configuration.MultiTenantManager;
+import com.yk.spring.springboot.springboot_rest_api.dao.UserRepository;
 import com.yk.spring.springboot.springboot_rest_api.entity.User;
-import com.yk.spring.springboot.springboot_rest_api.listeners.RetrieveDataListener;
 import com.yk.spring.springboot.springboot_rest_api.model.DataSourceProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,64 +19,49 @@ public class UserServiceImpl implements UserService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
+
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
+    @Autowired
+    private MultiTenantManager tenantManager;
 
 //    @Autowired
-    private DataSourceConfig dataSourceConfig;
+//    private UserDAO userDAO;
 
-//    @Autowired
-    private DataSourceService dataSourceService;
-
-    private List<RetrieveDataListener> listeners = new ArrayList<>();
+    @Autowired
+    private DataSourceService sourceService;
 
     private List<DataSourceProperties> dataSourceProperties;
-
-    public UserServiceImpl() {
-        dataSourceConfig = ApplicationContextProvider.getApplicationContext().getBean(DataSourceConfig.class);
-        if (dataSourceConfig != null) {
-            addListener(dataSourceConfig);
-        }
-
-        dataSourceService = ApplicationContextProvider.getApplicationContext().getBean(DataSourceService.class);
-        dataSourceProperties = dataSourceService.readMyObjects();
-        LOGGER.info("$$$$$ " + dataSourceProperties);
-    }
-
-    public void addListener(RetrieveDataListener listener) {
-        listeners.add(listener);
-    }
-
-    public void removeListener(RetrieveDataListener listener) {
-        listeners.remove(listener);
-    }
-
-    public void notifyListeners(DataSourceProperties properties) {
-        for (RetrieveDataListener listener : listeners) {
-            listener.onRetrieveData(properties);
-
-        }
-    }
 
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-
-        if (!dataSourceProperties.isEmpty()) {
-            for (DataSourceProperties properties : dataSourceProperties) {
-                notifyListeners(properties);
-                users.addAll(userDAO.getAllUsers());
+        dataSourceProperties = sourceService.readMyObjects();
+        for (int i = 0; i < dataSourceProperties.size(); i++) {
+            DataSourceProperties dataSource = dataSourceProperties.get(i);
+            try {
+                tenantManager.addTenant(String.valueOf(i), dataSource.getUrl(), dataSource.getUsername(), dataSource.getPassword(), dataSource.getDriverClassName());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
 
+        List<User> users = new ArrayList<>();
+
+        List<String> tenantNames = tenantManager.getTenantNames();
+
+        for (String tenantName : tenantNames) {
+            tenantManager.setCurrentTenant(tenantName);
+            List<User> allUsers = userRepository.findAll();
+            users.addAll(allUsers);
+        }
         return users;
     }
 
     @Override
     @Transactional
     public User getUserById(int id) {
-        return userDAO.getUserById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
 }
