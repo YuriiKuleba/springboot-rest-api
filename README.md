@@ -1,6 +1,7 @@
 # Getting Started
 
 ### Clone the application
+* Application requires Java v17+ to run. Install the repository locally or run with IDE
 * https://github.com/YuriiKuleba/springboot-rest-api.git
 
 ### Create and define databases
