@@ -12,7 +12,7 @@
 src/main/resources/createDBs.txt
 ``` 
 + For define database, we have to write its properties in the file which located
-+ in resources folder: 
+in resources folder: 
 ```bash
 data-source-parameters.yaml
  ``` 
