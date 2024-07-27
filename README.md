@@ -29,4 +29,5 @@ file which located in resources folder.
     GET http://localhost:8080/api/1
 
     OpenAPI: http://localhost:8080/swagger-ui/index.html
+    API-docs: http://localhost:8080/api-docs
 
