@@ -1,4 +1,4 @@
-MySQL:
+--MySQL:
 
 CREATE DATABASE  data_base_1;
 USE data_base_1;
@@ -19,7 +19,7 @@ VALUES
 	
 ########################################################
 
-Postgres:
+--Postgres:
 
 CREATE DATABASE  data_base_2;
 
