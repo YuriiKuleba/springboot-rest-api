@@ -16,7 +16,7 @@ in resources folder:
 ```bash
 data-source-parameters.yaml
  ``` 
-
++ To add more databases, just add their properties to the configuration file.
 
 ### Build and Run Application
 
