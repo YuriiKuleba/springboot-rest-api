@@ -6,7 +6,6 @@ import com.yk.spring.springboot.springboot_rest_api.model.DataSourceProperties;
 import com.yk.spring.springboot.springboot_rest_api.service.DataSourceService;
 import jakarta.persistence.EntityManager;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -18,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * This class provides Jpa repositories for data bases like: mysql, postgres etc.
+ */
 @Configuration
-@ConfigurationProperties(prefix = "data-source")
 public class JpaRepoProvider {
 
     private List<SimpleJpaRepository<User, Integer>> repositories;

@@ -34,7 +34,7 @@ surname VARCHAR(255)
 INSERT INTO users(username, name, surname)
 VALUES
 	('db2_user_1', 'Aws', 'Cloudko'),
-	('db2_user_2', 'Google', 'Cloud Platformoff'),
+	('db2_user_2', 'Google', 'Platformich'),
 	('db2_user_3', 'Azure', 'Microsoftoff');
 	
 
