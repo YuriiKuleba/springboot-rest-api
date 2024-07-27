@@ -6,7 +6,7 @@
 ### Create and define databases
 
 + This application uses two different databases to obtain a list of users. 
-+ In our case we use MySQL and PostgreSQL**
++ In our case we use MySQL and PostgreSQL
 + Scripts for creating a database are in the file:
 ```bash
 src/main/resources/createDBs.txt
