@@ -1,6 +1,7 @@
 package com.yk.spring.springboot.springboot_rest_api.service;
 
 import com.yk.spring.springboot.springboot_rest_api.entity.User;
+import com.yk.spring.springboot.springboot_rest_api.exception.NoSuchUserException;
 import com.yk.spring.springboot.springboot_rest_api.provider.JpaRepoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
         List<User> users = new ArrayList<>();
 
-        List<SimpleJpaRepository<User, Long>> repositories = jpaRepoProvider.getRepositories();
+        List<SimpleJpaRepository<User, Integer>> repositories = jpaRepoProvider.getRepositories();
 
         for (SimpleJpaRepository repo : repositories) {
             List<User> allUsers = repo.findAll();
@@ -36,13 +37,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<User> getUserById(int id) {
         List<User> usersList = new ArrayList<>();
-        List<SimpleJpaRepository<User, Long>> repositories = jpaRepoProvider.getRepositories();
+        List<SimpleJpaRepository<User, Integer>> repositories = jpaRepoProvider.getRepositories();
 
-        for (SimpleJpaRepository repo : repositories) {
-            Optional user = repo.findById(id);
-            usersList.add((User) user.get());
+        for (SimpleJpaRepository<User, Integer> repo : repositories) {
+            Optional<User> user = repo.findById(id);
+            usersList.add(user.orElseThrow( () -> new NoSuchUserException("There is no employee with id = " + id + " in Database")));
         }
         return usersList;
     }
-
 }
