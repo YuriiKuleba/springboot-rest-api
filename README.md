@@ -11,11 +11,12 @@
 ```bash
 src/main/resources/createDBs.txt
 ``` 
-+ For define database, we have to write its properties in the
++ For define database, we have to write its properties in the file which located
++ in resources folder: 
 ```bash
 data-source-parameters.yaml
  ``` 
-file which located in resources folder. 
+
 
 ### Build and Run Application
 
