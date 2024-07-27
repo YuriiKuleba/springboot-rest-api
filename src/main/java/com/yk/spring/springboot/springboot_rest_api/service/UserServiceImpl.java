@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
         List<SimpleJpaRepository<User, Integer>> repositories = jpaRepoProvider.getRepositories();
 
-        for (SimpleJpaRepository repo : repositories) {
+        for (SimpleJpaRepository<User, Integer> repo : repositories) {
             List<User> allUsers = repo.findAll();
             users.addAll(allUsers);
         }
@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
 
         for (SimpleJpaRepository<User, Integer> repo : repositories) {
             Optional<User> user = repo.findById(id);
-            usersList.add(user.orElseThrow( () -> new NoSuchUserException("There is no employee with id = " + id + " in Database")));
+            usersList.add(user.orElseThrow( () ->
+                new NoSuchUserException("There is no employee with id = " + id + " in Database")));
         }
         return usersList;
     }
