@@ -24,14 +24,14 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable int id) {
+    public List<User> getUserById(@PathVariable int id) {
 
-        User user = userService.getUserById(id);
+        List<User> users = userService.getUserById(id);
 
-        if (user == null) {
+        if (users == null) {
             throw new NoSuchUserException("There is no employee with id = " + id + " in Database");
         }
-        return user;
+        return users;
     }
 
     @ExceptionHandler

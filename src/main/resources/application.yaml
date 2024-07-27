@@ -3,14 +3,8 @@ dataSource:
     username: yurko
     password: yurko
     driverClassName: com.mysql.cj.jdbc.Driver
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQLDialect
+
   - url: jdbc:postgresql://localhost:5432/data_base_2
     username: postgres
     password: yurko
     driverClassName: org.postgresql.Driver
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-

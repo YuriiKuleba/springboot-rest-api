@@ -14,7 +14,7 @@ public class DataSourceService {
 
     private static final String DATA_SOURCE_FILE = "application.yaml";
 
-    public List<DataSourceProperties> readMyObjects() {
+    public List<DataSourceProperties> readObjects() {
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 

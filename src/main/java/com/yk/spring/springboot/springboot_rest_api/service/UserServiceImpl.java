@@ -1,58 +1,32 @@
 package com.yk.spring.springboot.springboot_rest_api.service;
 
-import com.yk.spring.springboot.springboot_rest_api.configuration.MultiTenantManager;
-import com.yk.spring.springboot.springboot_rest_api.dao.UserRepository;
 import com.yk.spring.springboot.springboot_rest_api.entity.User;
-import com.yk.spring.springboot.springboot_rest_api.model.DataSourceProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.yk.spring.springboot.springboot_rest_api.provider.JpaRepoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
-
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private MultiTenantManager tenantManager;
-
-//    @Autowired
-//    private UserDAO userDAO;
-
-    @Autowired
-    private DataSourceService sourceService;
-
-    private List<DataSourceProperties> dataSourceProperties;
+    private JpaRepoProvider jpaRepoProvider;
 
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        dataSourceProperties = sourceService.readMyObjects();
-        for (int i = 0; i < dataSourceProperties.size(); i++) {
-            DataSourceProperties dataSource = dataSourceProperties.get(i);
-            try {
-                tenantManager.addTenant(String.valueOf(i), dataSource.getUrl(), dataSource.getUsername(), dataSource.getPassword(), dataSource.getDriverClassName());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         List<User> users = new ArrayList<>();
 
-        List<String> tenantNames = tenantManager.getTenantNames();
+        List<SimpleJpaRepository<User, Long>> repositories = jpaRepoProvider.getRepositories();
 
-        for (String tenantName : tenantNames) {
-            tenantManager.setCurrentTenant(tenantName);
-            List<User> allUsers = userRepository.findAll();
+        for (SimpleJpaRepository repo : repositories) {
+            List<User> allUsers = repo.findAll();
             users.addAll(allUsers);
         }
         return users;
@@ -60,8 +34,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User getUserById(int id) {
-        return userRepository.findById(id).orElse(null);
+    public List<User> getUserById(int id) {
+        List<User> usersList = new ArrayList<>();
+        List<SimpleJpaRepository<User, Long>> repositories = jpaRepoProvider.getRepositories();
+
+        for (SimpleJpaRepository repo : repositories) {
+            Optional user = repo.findById(id);
+            usersList.add((User) user.get());
+        }
+        return usersList;
     }
 
 }
