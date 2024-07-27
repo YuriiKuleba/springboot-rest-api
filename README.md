@@ -27,7 +27,7 @@ data-source-parameters.yaml
 ### Explore Rest APIs. The app defines following CRUD APIs:
 
     GET http://localhost:8080/api/users
-    GET http://localhost:8080/api/1
+    GET http://localhost:8080/api/users/{id}
 
     OpenAPI: http://localhost:8080/swagger-ui/index.html
     API-docs: http://localhost:8080/api-docs
